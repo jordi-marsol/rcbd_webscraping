@@ -1,0 +1,14 @@
+Fem scraping del lloc rcdb.com:
+
+El primer problema es que en fer un scraping amb la llibreria requests directament, la taula que mostra pel llistat, els elements <tr> no estan tancats i no es pot fer un bon seguiment dels elements, per això millor fem servir la llibreria Selenium que ens presenta correctament els elements.
+
+El lloc fa servir molt pocs identificadors unics per tant ens hem d'anar movent entre elements de manera relativa
+
+L'altre problema es que no sempre surt tota la informació en tots els camps per tant en escanejar un valor pot ser que esperem que aparegui un pero no hi sigui.
+
+23/10/2021 - 1
+Afegeixo alguns comentaris en la primera versió funcional del scraping per veure fins on podem arribar
+En aquesta primera versió no s'entra al detall de quina informació volem mostrar definitivament o de com queda presentada. Tampoc esta polit a nivell de programació ni d'organització dels arxius ja que básicament es per provar fins on podem arribar i com de factible es l'scraping.
+Treballo amb tres arxius html que son copia del contingut de la web original per fer les proves, però es pot canviar ràpidament a la web real canviant el valor a les variables corresponents de l'aplicació.
+La idea final seria poder separar cada informació de les muntanyes ruses en un arxiu format .csv que podria quedar amb aquests camps, p.ex:
+nommuntanya, parc, localitzacions, datainici, tipus, tipusprincipal, fabricantmodel, tracks (desglossat en altres camps)
