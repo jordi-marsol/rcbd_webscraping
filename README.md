@@ -1,7 +1,25 @@
 # Pràctica 1: Web scraping
 
 ## Context
-Aquest repositori es realitza en el marc de la Pràctica 1 de la assignatura _Tipologia i cicle de vida de les dades_ del Màster en Ciència de Dades de la UOC.  Consisteix en aplicar diferents tènciques i llibreries amb llenguatge de programació Python per tal d'extreure dades d'un lloc web mitjançant eines de _web scraping_ i exportar-les a un dataset. En el nostre cas, extraurem dades del web <https://rcdb.com> (_Roller Coaster Data Base_), d'ara en endevant l'anomenarem "RCDB".
+Aquest repositori es realitza en el marc de la Pràctica 1 de la assignatura _Tipologia i cicle de vida de les dades_ del Màster en Ciència de Dades de la UOC.  Consisteix en aplicar diferents tècniques i llibreries amb llenguatge de programació Python per tal d'extreure dades d'un lloc web mitjançant eines de _web scraping_ i exportar-les a un dataset. En el nostre cas, extraurem dades del web <https://rcdb.com> (_Roller Coaster Data Base_), d'ara en endevant l'anomenarem "RCDB".
+
+## Títol del dataset
+_RollerCoasters.csv_
+
+## Descripció del dataset.
+--ddd
+
+## Representació gràfica
+
+| Muntanya Russa   		| Parc           	| Ubicació  				| Altura 		| Fabricant | Any | (...) 
+| :-------------:		|:-------------		| :-----					| ---:			| --- 		| --- |  ---
+| Dragon Khan			| PortAventura 		| Salou, Catalunya, Espanya | 45,1 m		| B&M 		| 1995 |
+| Kingda Ka    			| Six Flags Great Adventure |   Jackson, New Jersey, USA | 139,0 m| Intamin AG | 2005 | 
+| Steel Vengeance		| Cedar Point      | Sandusky, Ohio, USA		| 62,5 m		| RMC 		| 2018 | 
+| (...)	|       | | 		|  		|  | 
+
+## Contingut
+--camps, periode de temps i  i com s'ha recollit
 
 ## Agraïments
 
@@ -27,17 +45,24 @@ A partir d'aquest dataset es podrien respondre, per exemple, les següents pregu
 
 Entre d'altres...
 
-## Títol del dataset
-_RollerCoasters.csv_
+## Llicència
+--cc
 
-## Representació gràfica
+## Participants
 
-| Muntanya Russa   		| Parc           	| Ubicació  				| Altura 		| Fabricant | Any | (...) 
-| :-------------:		|:-------------		| :-----					| ---:			| --- 		| --- |  ---
-| Dragon Khan			| PortAventura 		| Salou, Catalunya, Espanya | 45,1 m		| B&M 		| 1995 |
-| Kingda Ka    			| Six Flags Great Adventure |   Jackson, New Jersey, USA | 139,0 m| Intamin AG | 2005 | 
-| Steel Vengeance		| Cedar Point      | Sandusky, Ohio, USA		| 62,5 m		| RMC 		| 2018 | 
-| (...)	|       | | 		|  		|  | 
+|Contribucions|Signatura|
+|Investigació prèvia|ARC,JML|
+|Redacció de les respostes|ARC,JML|
+|Desenvolupament del codi|ARC,JML|
+
+## Codi
+Adjuntar al repositori Git el codi
+
+## Dataset
+Publicar el dataset en _CSV_ a Zenodo amb una descripció
+
+
+# Contingut per posar a readme.md
 
 ## Membres de l'equip
 * **Jordi Marsol López**
@@ -45,6 +70,7 @@ _RollerCoasters.csv_
 * **Arnau Rafi Cuello**
 
 ## Fitxers
+(Contingut temporal)
 
 * **19235.htm**: prova de la pràctica ja minimanent funcional
 * **rcbd_operating.htm**: prova de la pràctica ja minimanent funcional
@@ -54,10 +80,11 @@ _RollerCoasters.csv_
 
 Treballo amb tres arxius html que son copia del contingut de la web original per fer les proves, però es pot canviar ràpidament a la web real canviant el valor a les variables corresponents de l'aplicació. La idea final seria poder separar cada informació de les muntanyes ruses en un arxiu format .csv que podria quedar amb aquests camps, p.ex: nommuntanya, parc, localitzacions, datainici, tipus, tipusprincipal, fabricantmodel, tracks (desglossat en altres camps)
 
-## Llicència
-_A determinar..._
+## Ubicació del dataset
+(DOI de Zenodo del dataset)
 
 ## Recursos
+(crec que no cal aquest apartat)
 
 1. Lawson, R. (2015). _Web Scraping with Python_. Packt Publishing Ltd. Chapter 2. Scraping the Data.
 2. Mitchel, R. (2015). _Web Scraping with Python: Collecting Data from the Modern Web_. O'Reilly Media, Inc. Chapter 1. Your First Web Scraper.
