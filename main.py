@@ -4,6 +4,7 @@ import time
 import pandas as pd
 from bs4 import BeautifulSoup
 
+# Requeriments: Python 3.9 o superior
 # La següent URL és la web resultat d'aplicar una cerca al buscador de rcdb.com,
 # amb els següents criteris:
 #   Criteria:	Existing
