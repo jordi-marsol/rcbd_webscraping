@@ -26,18 +26,18 @@ Aquest repositori es realitza en el marc de la Pràctica 1 de la assignatura _Ti
 
 ### Camps
 
-_Muntanya_russa_: Nom de la muntanya
-_Ubicacio_: Ubicació de la muntanya. Aquesta inclou diferents localitzacions com ara població, regió local i país, en aquest ordre normalment, però depen del lloc on estigui en pot tenir més o menys.
-_parc_: Nom del parc d'atraccions on està ubicada.
-_Tipus_: Tipus de muntanya russa referit al material principal en què està fabricada.
-_Data_obertura_: La data d'inauguració de la muntanya.
-_Disseny_,_Fabricant_: El disseny i fabricant.
-_Model_: El model
-_Velocitat_màxima (mph)_: La velocitat màxima que pot assolir en milles per hora.
-_Llargada (ft)_,_Altura_màxima (ft)_: La llargada màxima que té i l'alçada màxima.
-_Inversions_: Inversions (girs) que té la muntanya.
-_Duració_: Duració en minuts de tot el recorregut.
-_Elements_: Elements de què està composta la muntanya.
+* _Muntanya_russa_: Nom de la muntanya
+* _Ubicacio_: Ubicació de la muntanya. Aquesta inclou diferents localitzacions com ara població, regió local i país, en aquest ordre normalment, però depen del lloc on estigui en pot tenir més o menys.
+* _parc_: Nom del parc d'atraccions on està ubicada.
+* _Tipus_: Tipus de muntanya russa referit al material principal en què està fabricada.
+* _Data_obertura_: La data d'inauguració de la muntanya.
+* _Disseny_,_Fabricant_: El disseny i fabricant.
+* _Model_: El model
+* _Velocitat_màxima (mph)_: La velocitat màxima que pot assolir en milles per hora.
+* _Llargada (ft)_,_Altura_màxima (ft)_: La llargada màxima que té i l'alçada màxima.
+* _Inversions_: Inversions (girs) que té la muntanya.
+* _Duració_: Duració en minuts de tot el recorregut.
+* _Elements_: Elements de què està composta la muntanya.
 
 ### Periode de temps
 El periode de temps en que es genera el contingut del scraping és aquell en que s'executa l'aplicació. No hi ha la intenció de limitar la cerca en un període de temps determinat però si en el nombre de pàgines que s'extreuen. La web de rcdb.com actualiza freqüentment els canvis i noves muntanyes russes per tant la informació que s'extregui en executar l'aplicació suposem que serà el més actual possible.
