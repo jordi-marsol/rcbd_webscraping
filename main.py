@@ -1,10 +1,10 @@
 import func
 import re
+import os
 import time
 import pandas as pd
 from bs4 import BeautifulSoup
 
-# Requeriments: Python 3.9 o superior
 # La següent URL és la web resultat d'aplicar una cerca al buscador de rcdb.com,
 # amb els següents criteris:
 #   Criteria:	Existing
@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 url = "https://rcdb.com/r.htm?order=8&st=93&ot=2&ex"
 url_base = "https://rcdb.com/"
 
-quantitat_de_pagines = 2            # Quantitat de pàgines a scrapejar
+quantitat_de_pagines = 10           # Quantitat de pàgines a scrapejar
 quantitat_de_coasters_x_pag = 24    # Quantitat de coasters a scrapejar per pàgina (24 és el màxim)
 
 qty_coasters = quantitat_de_pagines * quantitat_de_coasters_x_pag
@@ -27,12 +27,12 @@ urls_to_scrape = func.get_url_list(url_base, url, quantitat_de_pagines)
 data = []
 
 # Inicialitzo alguns valors de dades:
-length = ''
-height = ''
-qty_inversions = ''
-duration = ''
-elements = ''
-speed = ''
+length = 'NA'
+height = 'NA'
+qty_inversions = 'NA'
+duration = 'NA'
+elements = 'NA'
+speed = 'NA'
 fabricant = 'NA'
 model = 'NA'
 
@@ -49,10 +49,25 @@ for url in urls_to_scrape:
     rows = table_body.find_all('tr')
 
     # Aquest bucle recorre cada fila del body de la taula:
-
     for row in rows[0:quantitat_de_coasters_x_pag]:
         a = row.find_all('a')
         i += 1
+
+        # Reinicialitzo tot els valors de les variables:
+        nom_muntanya = 'NA'
+        ubicacio = 'NA'
+        park = 'NA'
+        tipu = 'NA'
+        data_obert = 'NA'
+        disseny = 'NA'
+        length = 'NA'
+        height = 'NA'
+        qty_inversions = 'NA'
+        duration = 'NA'
+        elements = 'NA'
+        speed = 'NA'
+        fabricant = 'NA'
+        model = 'NA'
 
         # Petit algoritme que mou "cursor" en cas de que el primer camp de la fila no tingui "càmara":
         ini = -1
@@ -135,7 +150,7 @@ for url in urls_to_scrape:
 
         data.append(coaster)
 
-dataset = pd.DataFrame(data, columns=["Muntanya_russa", "Ubicacio", "parc", "Tipus", "Data_obertura", "Disseny",
+dataset = pd.DataFrame(data, columns=["Muntanya_russa", "Ubicacio", "Parc", "Tipus", "Data_obertura", "Disseny",
                                       "Fabricant", "Model", "Velocitat_màxima (mph)", "Llargada (ft)",
                                       "Altura_màxima (ft)", "Inversions", "Duració", "Elements"])
 
@@ -143,4 +158,5 @@ dataset.to_csv("RollerCoasters.csv", sep=',', encoding='utf-8')
 
 print("\nScraped {} pages.\nScraped {} roller coasters.".format(quantitat_de_pagines, qty_coasters))
 print("\n-------------------------------------------------------------------------------------")
-print("You can find resulting dataset 'RollerCoasters.csv' in the base project folder.")
+print("You can find resulting dataset 'RollerCoasters.csv' in the project base folder.")
+print("This file has a size of {} bytes.".format(os.path.getsize(r'RollerCoasters.csv')))
