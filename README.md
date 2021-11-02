@@ -109,7 +109,7 @@ La motivació del seu us ve pel fet principal que l'scraping s'ha fet a partir d
 
 
 ## Ubicació del dataset
-(DOI de Zenodo del dataset)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5639556.svg)](https://doi.org/10.5281/zenodo.5639556)
 
 ## Recursos
 (posar aquest apartat al readme.MD i no al pdf final.)
