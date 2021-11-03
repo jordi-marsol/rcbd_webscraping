@@ -5,6 +5,7 @@ import time
 import pandas as pd
 from bs4 import BeautifulSoup
 
+# Requisits: Requereix Python 3.9 o superior
 # La següent URL és la web resultat d'aplicar una cerca al buscador de rcdb.com,
 # amb els següents criteris:
 #   Criteria:	Existing
@@ -15,8 +16,8 @@ from bs4 import BeautifulSoup
 url = "https://rcdb.com/r.htm?order=8&st=93&ot=2&ex"
 url_base = "https://rcdb.com/"
 
-quantitat_de_pagines = 10           # Quantitat de pàgines a scrapejar
-quantitat_de_coasters_x_pag = 24    # Quantitat de coasters a scrapejar per pàgina (24 és el màxim)
+quantitat_de_pagines = 1           # Quantitat de pàgines a scrapejar
+quantitat_de_coasters_x_pag = 10    # Quantitat de coasters a scrapejar per pàgina (24 és el màxim)
 
 qty_coasters = quantitat_de_pagines * quantitat_de_coasters_x_pag
 
@@ -98,51 +99,54 @@ for url in urls_to_scrape:
             ubicacio = ubicacio + tx.get_text() + ' / '
         ubicacio = ubicacio.removesuffix(' / ')
 
-        # Extracció del fabricant:
-        if "Make:" in feature.prettify():
-            if "Make: " in feature.find(attrs={'class': 'scroll'}).find('p').get_text():
-                fabricant = feature.find(attrs={'class': 'scroll'}).find('a').get_text()
+        try:
+            # Extracció del fabricant:
+            if "Make:" in feature.prettify():
+                if "Make: " in feature.find(attrs={'class': 'scroll'}).find('p').get_text():
+                    fabricant = feature.find(attrs={'class': 'scroll'}).find('a').get_text()
 
-        # Extracció del model:
-        if "Model:" in feature.prettify():
-            if "Model: " in feature.find(attrs={'class': 'scroll'}).find('p').get_text():
-                model = feature.find(attrs={'class': 'scroll'}).find_all('a')[1].get_text()
+            # Extracció del model:
+            if "Model:" in feature.prettify():
+                if "Model: " in feature.find(attrs={'class': 'scroll'}).find('p').get_text():
+                    model = feature.find(attrs={'class': 'scroll'}).find_all('a')[1].get_text()
 
-        # Extracció de la info de la secció "tracks":
-        if "Tracks" in soup_coaster.find_all('section')[1].find('h3').get_text():
-            tracks = soup_coaster.find_all('section')[1]
+            # Extracció de la info de la secció "tracks":
+            if "Tracks" in soup_coaster.find_all('section')[1].find('h3').get_text():
+                tracks = soup_coaster.find_all('section')[1]
 
-            table_tracks = tracks.find(attrs={'class': 'stat-tbl'})
-            table_tracks_body = table_tracks.find('tbody')
-            rows_tracks = table_tracks_body.find_all('tr')
+                table_tracks = tracks.find(attrs={'class': 'stat-tbl'})
+                table_tracks_body = table_tracks.find('tbody')
+                rows_tracks = table_tracks_body.find_all('tr')
 
-            length = 'NA'
-            height = 'NA'
-            qty_inversions = 'NA'
-            duration = 'NA'
-            elements = 'NA'
-            speed = 'NA'
+                length = 'NA'
+                height = 'NA'
+                qty_inversions = 'NA'
+                duration = 'NA'
+                elements = 'NA'
+                speed = 'NA'
 
-            for rowt in rows_tracks:
-                rowt_str = rowt.get_text()
+                for rowt in rows_tracks:
+                    rowt_str = rowt.get_text()
 
-                if rowt_str.startswith("Length"):
-                    length = rowt.find(attrs={'class': 'float'}).get_text()
-                elif rowt_str.startswith("Height"):
-                    height = rowt.find(attrs={'class': 'float'}).get_text()
-                elif rowt_str.startswith("Speed"):
-                    speed = rowt.find(attrs={'class': 'float'}).get_text()
-                elif rowt_str.startswith("Inversions"):
-                    qty_inversions = re.findall(r'[0-99]', rowt.td.get_text())[0]
-                elif rowt_str.startswith("Duration"):
-                    duration = re.findall(r'\d{1,2}:\d{1,2}', rowt.td.get_text())[0]
-                elif rowt_str.startswith("Elements"):
-                    elements = ''
-                    lst_elements = rowt.find_all('a')
+                    if rowt_str.startswith("Length"):
+                        length = rowt.find(attrs={'class': 'float'}).get_text()
+                    elif rowt_str.startswith("Height"):
+                        height = rowt.find(attrs={'class': 'float'}).get_text()
+                    elif rowt_str.startswith("Speed"):
+                        speed = rowt.find(attrs={'class': 'float'}).get_text()
+                    elif rowt_str.startswith("Inversions"):
+                        qty_inversions = re.findall(r'[0-99]', rowt.td.get_text())[0]
+                    elif rowt_str.startswith("Duration"):
+                        duration = re.findall(r'\d{1,2}:\d{1,2}', rowt.td.get_text())[0]
+                    elif rowt_str.startswith("Elements"):
+                        elements = ''
+                        lst_elements = rowt.find_all('a')
 
-                    for elem in lst_elements:
-                        elements += elem.get_text() + '; '
-                    elements = elements.removesuffix('; ')
+                        for elem in lst_elements:
+                            elements += elem.get_text() + '; '
+                        elements = elements.removesuffix('; ')
+        except Exception as e:
+            print (e.__doc__)
 
         # Càrrega de dades:
         coaster = [nom_muntanya, ubicacio, park, tipu, data_obert, disseny, fabricant,
@@ -150,6 +154,7 @@ for url in urls_to_scrape:
 
         data.append(coaster)
 
+func.driver.quit() # Aquí es tanca el chrome
 dataset = pd.DataFrame(data, columns=["Muntanya_russa", "Ubicacio", "Parc", "Tipus", "Data_obertura", "Disseny",
                                       "Fabricant", "Model", "Velocitat_màxima (mph)", "Llargada (ft)",
                                       "Altura_màxima (ft)", "Inversions", "Duració", "Elements"])

@@ -1,6 +1,14 @@
-import builtwith, requests
+import builtwith, requests, time
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
+#Carrega global del chromedriver, és més eficient fer-ho així que carregar i tancar dins una funció cada cop
+chromedriver_path =  './chromedriver.exe' 
+options = Options()
+options.headless = True
+options.add_experimental_option('excludeSwitches', ['enable-logging']) 
+driver = webdriver.Chrome(chromedriver_path, options=options)
 
 def web_technology_identifier(url):
     """
@@ -36,14 +44,17 @@ def download_web_HTML(url):
 def download_web_soup(url):
     """
     This function will download the web page and return the soup.
-    Aquesta funcio descarrega una web i retorna el seu HTMl.
+    Aquesta funcio descarrega una web i retorna l'objecte soup.
     :param url:
     :return:
     """
-    try:
-        page = requests.get(url)
-        soup = BeautifulSoup(page.content, "html.parser")
-    except requests.exceptions.RequestException as e:
+    try:      
+        driver.get(url) 
+        time.sleep(1) 
+        soup = BeautifulSoup(driver.page_source, features='html.parser')
+    except Exception as e:
+        driver.quit()
+        print (e.__doc__)
         raise SystemExit(e)
 
     return soup
