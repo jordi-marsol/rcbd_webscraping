@@ -5,7 +5,8 @@ import time
 import pandas as pd
 from bs4 import BeautifulSoup
 
-# Requisits: Requereix Python 3.9 o superior
+# Requisits:    Requereix Python 3.9 o superior
+#               Tenir instal·lat Google Chrome
 # La següent URL és la web resultat d'aplicar una cerca al buscador de rcdb.com,
 # amb els següents criteris:
 #   Criteria:	Existing
@@ -16,8 +17,8 @@ from bs4 import BeautifulSoup
 url = "https://rcdb.com/r.htm?order=8&st=93&ot=2&ex"
 url_base = "https://rcdb.com/"
 
-quantitat_de_pagines = 1           # Quantitat de pàgines a scrapejar
-quantitat_de_coasters_x_pag = 10    # Quantitat de coasters a scrapejar per pàgina (24 és el màxim)
+quantitat_de_pagines = 10           # Quantitat de pàgines a scrapejar
+quantitat_de_coasters_x_pag = 24    # Quantitat de coasters a scrapejar per pàgina (24 és el màxim)
 
 qty_coasters = quantitat_de_pagines * quantitat_de_coasters_x_pag
 
