@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-#Carrega global del chromedriver, és més eficient fer-ho així que carregar i tancar dins una funció cada cop
+# Carrega global del chromedriver, és més eficient fer-ho així que carregar i tancar dins una funció cada cop
 chromedriver_path =  './chromedriver.exe' 
 options = Options()
 options.headless = True
@@ -71,6 +71,7 @@ def get_url_list(url_base, url, n):
     """
     urllist = [url]
     nxt = ''
+    percentatge_descarrega = 0
 
     for i in range(n-1):
         soup = download_web_soup(url)
@@ -84,5 +85,9 @@ def get_url_list(url_base, url, n):
         next_page = url_base + nxt
         urllist.append(next_page)
         url = next_page
+        percentatge_descarrega = round(i / n * 100, 1)
+        print("Retrieving coaster-web pages list to scrape: {} % completed".format(percentatge_descarrega))
+
+    print("List completed.\n-----------------------------------------")
 
     return urllist
