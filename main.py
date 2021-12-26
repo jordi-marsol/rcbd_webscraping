@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 url = "https://rcdb.com/r.htm?order=8&st=93&ot=2&ex"
 url_base = "https://rcdb.com/"
 
-quantitat_de_pagines = 10           # Quantitat de pàgines a scrapejar
+quantitat_de_pagines = 160           # Quantitat de pàgines a scrapejar
 quantitat_de_coasters_x_pag = 24    # Quantitat de coasters a scrapejar per pàgina (24 és el màxim)
 
 qty_coasters = quantitat_de_pagines * quantitat_de_coasters_x_pag
@@ -39,6 +39,8 @@ fabricant = 'NA'
 model = 'NA'
 
 i = 0
+
+print("Start of scraping.")
 
 for url in urls_to_scrape:
 
@@ -86,7 +88,7 @@ for url in urls_to_scrape:
 
         # Descàrrega de cada url_coaster
         percentatge_descarrega = round(i/qty_coasters * 100, 1)
-        print("{}% \tDownloading data from: {}  \tRoller coaster: {}".format(percentatge_descarrega,
+        print("{}% \tScraping data from: {}  \tRoller coaster: {}".format(percentatge_descarrega,
                                                                            url_base + url_coaster,
                                                                            nom_muntanya))
         soup_coaster = func.download_web_soup(url_base + url_coaster)
